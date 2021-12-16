@@ -43,16 +43,18 @@
                 (cont = el.container || el)[addEventListener](
                     mousedown,
                     cont.md = function(e) {
-                        if (!el.hasAttribute('nochilddrag') ||
-                            _document.elementFromPoint(
-                                e.pageX, e.pageY
-                            ) == cont
-                        ) {
-                            pushed = 1;
-                            lastClientX = e.clientX;
-                            lastClientY = e.clientY;
+                        if (e.button === 0) {
+                            if (!el.hasAttribute('nochilddrag') ||
+                                _document.elementFromPoint(
+                                    e.pageX, e.pageY
+                                ) == cont
+                            ) {
+                                pushed = 1;
+                                lastClientX = e.clientX;
+                                lastClientY = e.clientY;
 
-                            e.preventDefault();
+                                e.preventDefault();
+                            }
                         }
                     }, 0
                 );
